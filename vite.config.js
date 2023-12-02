@@ -10,12 +10,12 @@ export default defineConfig({
       // eslint-disable-next-line no-undef
       entry: resolve(__dirname, 'lib/index.jsx'),
       formats: ['es'],
-      rollupOptions: {
-        external: ['react', 'react/jsx-runtime'],
-        output: {
-          assetFileNames: 'assets/[name][extname]',
-          entryFileNames: 'main.js',
-        }
+    },
+    rollupOptions: {
+      external: ['react', 'react/jsx-runtime'],
+      output: {
+        assetFileNames: 'assets/[name][extname]',
+        entryFileNames: 'main.js',
       }
     }
   }
