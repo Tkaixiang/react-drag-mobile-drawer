@@ -288,7 +288,6 @@ const MobileStyles = css\` // Note that this is using emotion/css
 
         <Drawer
           open={regular}
-          disableBackDrop={true}
           onRequestClose={this.toggle("regular", false)}
           modalElementClass={ModalElement}
         >

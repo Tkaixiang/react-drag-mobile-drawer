@@ -1,10 +1,9 @@
 import { Component } from "react";
 import { Motion, spring, presets } from "react-motion";
 import PropTypes from "prop-types";
-import document from "global/document";
 import { InView } from "react-intersection-observer";
-import { css } from "@emotion/css";
 import { createPortal } from "react-dom";
+import './main.css'
 
 import {
   isDirectionBottom,
@@ -443,11 +442,11 @@ export default class Drawer extends Component {
                   this.hideDrawer();
                 }
               }}
-              className={`${Container} ${containerElementClass} `}
+              className={`Container ${containerElementClass} `}
               ref={getContainerRef}
             >
               <InView
-                className={HaveWeScrolled}
+                className="HaveWeScrolled"
                 onChange={this.inViewportChange}
               />
 
@@ -467,29 +466,3 @@ export default class Drawer extends Component {
     );
   }
 }
-
-const Container = css`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  display: flex;
-  justify-content: center;
-  flex-shrink: 0;
-  align-items: center;
-
-  z-index: 11;
-  transition: background-color 0.2s linear;
-
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-`;
-
-const HaveWeScrolled = css`
-  position: absolute;
-  top: 0;
-  height: 1px;
-  width: 100%;
-`;
