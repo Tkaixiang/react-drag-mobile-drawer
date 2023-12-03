@@ -1,7 +1,7 @@
 {
   "name": "react-drag-mobile-drawer",
   "private": false,
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
   "main": "dist/main.js",
   "files": [
@@ -46,10 +46,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Tkaixiang/react-mobile-drawer.git"
+    "url": "https://github.com/Tkaixiang/react-drag-mobile-drawer.git"
   },
-  "homepage": "https://github.com/Tkaixiang/react-mobile-drawer",
-  "bugs": "https://github.com/Tkaixiang/react-mobile-drawer/issues",
+  "homepage": "https://github.com/Tkaixiang/react-drag-mobile-drawer",
+  "bugs": "https://github.com/Tkaixiang/react-drag-mobile-drawer/issues",
   "authors": [
     "Jack Hanford"
   ],

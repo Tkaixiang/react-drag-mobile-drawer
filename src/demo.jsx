@@ -32,7 +32,7 @@ class Demo extends PureComponent {
         <h1>React Mobile Drawer</h1>
 
         <Info>
-          react-mobile-drawer is a lightweight, performant, drawer/modal component
+          react-drag-mobile-drawer is a lightweight, performant, drawer/modal component
           that can be dragged close. The animations are powered by react-motion
           and hence they feel very natural. <br/><br/>
           <u><b>Note:</b></u> This is an updated fork of the original <a href="https://github.com/hanford/react-drag-drawer">react-drag-drawer</a> with some additional APIs
@@ -41,7 +41,7 @@ class Demo extends PureComponent {
           Open example
         </button>
         <pre className={Code}>
-          {`import Drawer from 'react-mobile-drawer'
+          {`import Drawer from 'react-drag-mobile-drawer'
 
 ..
 
@@ -68,7 +68,7 @@ render () {
         <div className={Break} />
 
         <Info>
-          react-mobile-drawer uses native HTML5 scrolling to remain performant and
+          react-drag-mobile-drawer uses native HTML5 scrolling to remain performant and
           to properly respond to async data / components
         </Info>
         <button onClick={this.toggle("asyncHeight", true)} className={Toggle}>
@@ -77,14 +77,14 @@ render () {
         <div className={Break} />
 
         <Info>
-          You can also use react-mobile-drawer to build sidebars by simply
+          You can also use react-drag-mobile-drawer to build sidebars by simply
           changing the `direction` prop
         </Info>
         <button onClick={this.toggle("sidebarLeft", true)} className={Toggle}>
           Left Sidebar
         </button>
         <pre className={Code}>
-          {`import Drawer from 'react-mobile-drawer'
+          {`import Drawer from 'react-drag-mobile-drawer'
 
 ..
 
@@ -103,7 +103,7 @@ render () {
           Right Sidebar
         </button>
         <pre className={Code}>
-          {`import Drawer from 'react-mobile-drawer'
+          {`import Drawer from 'react-drag-mobile-drawer'
 
 ..
 
@@ -119,14 +119,14 @@ render () {
         <div className={Break} />
 
         <Info>
-          react-mobile-drawer assumes nothing about your styles and is left
+          react-drag-mobile-drawer assumes nothing about your styles and is left
           entirely up to you how you want to style it
         </Info>
         <button onClick={this.toggle("crazyStyle", true)} className={Toggle}>
           Different style
         </button>
         <pre className={Code}>
-          {`import Drawer from 'react-mobile-drawer'
+          {`import Drawer from 'react-drag-mobile-drawer'
 
 ..
 
@@ -149,7 +149,7 @@ render () {
           Mobile Drawer
         </button>
         <pre className={Code}>
-          {`import Drawer from 'react-mobile-drawer'
+          {`import Drawer from 'react-drag-mobile-drawer'
 ...
 <Drawer
 open={mobileStyle}
@@ -189,7 +189,7 @@ const MobileStyles = css\` // Note that this is using emotion/css
           dontApplyListeners prop
         </Info>
         <pre className={Code}>
-          {`import Drawer from 'react-mobile-drawer'
+          {`import Drawer from 'react-drag-mobile-drawer'
 
 ..
 
@@ -205,17 +205,17 @@ const MobileStyles = css\` // Note that this is using emotion/css
         <div className={Break} />
 
         <Info>
-          react-mobile-drawer has a{" "}
+          react-drag-mobile-drawer has a{" "}
           <a
             target="_blank"
-            href="https://github.com/hanford/react-mobile-drawer#api"
+            href="https://github.com/hanford/react-drag-mobile-drawer#api"
           >
             small but extensive API
           </a>{" "}
           that allows for some very cool customizations. The code for this
           website can be found{" "}
           <a
-            href="https://github.com/hanford/react-mobile-drawer/blob/master/demo/src/index.js"
+            href="https://github.com/hanford/react-drag-mobile-drawer/blob/master/demo/src/index.js"
             targert="_blank"
           >
             on github.
@@ -223,7 +223,7 @@ const MobileStyles = css\` // Note that this is using emotion/css
         </Info>
 
         <pre className={Code}>
-          {`import Drawer from 'react-mobile-drawer'
+          {`import Drawer from 'react-drag-mobile-drawer'
 
 ..
 

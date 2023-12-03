@@ -1,4 +1,4 @@
-## react-mobile-drawer
+## react-drag-mobile-drawer
 
 [![npm package][npm-badge]][npm]
 
@@ -14,13 +14,13 @@ This is an updated **fork** of the original [react-drag-drawer](https://www.npmj
 ## Install
 
 ```
-$ npm install react-mobile-drawer
+$ npm i react-drag-mobile-drawer
 ```
 
 ## Usage
 
 ```js
-import Drawer from 'react-mobile-drawer'
+import Drawer from 'react-drag-mobile-drawer'
 
 ..
 
