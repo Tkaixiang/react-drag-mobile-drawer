@@ -14,10 +14,10 @@ import {
   isClientSide,
 } from "./helpers";
 
-
 export default class Drawer extends Component {
   static propTypes = {
     open: PropTypes.bool.isRequired,
+    disableBackDrop: PropTypes.bool,
     children: PropTypes.oneOfType([
       PropTypes.object,
       PropTypes.array,
@@ -38,6 +38,8 @@ export default class Drawer extends Component {
     containerElementClass: PropTypes.string,
     getContainerRef: PropTypes.func,
     getModalRef: PropTypes.func,
+    dontApplyListeners: PropTypes.bool,
+    id: PropTypes.string
   };
 
   static defaultProps = {
@@ -53,6 +55,7 @@ export default class Drawer extends Component {
     parentElement: document.body,
     allowClose: true,
     dontApplyListeners: false,
+    disableBackDrop: false,
     containerElementClass: "",
     modalElementClass: "",
   };
@@ -377,13 +380,12 @@ export default class Drawer extends Component {
 
   render() {
     const {
+      id,
       containerElementClass,
       containerOpacity,
-      dontApplyListeners,
-      id,
       getContainerRef,
-      getModalRef,
       direction,
+      disableBackDrop,
     } = this.props;
 
     const open = this.state.open && this.props.open;
@@ -409,7 +411,8 @@ export default class Drawer extends Component {
 
     // Style object for the container element
     let containerStyle = {
-      backgroundColor: `rgba(55, 56, 56, ${open ? containerOpacity : 0})`,
+      backgroundColor: disableBackDrop ? "rgba(255,255,255, 0)" : `rgba(55, 56, 56, ${open ? containerOpacity : 0})`,
+      pointerEvents: disableBackDrop ? "none" : "auto"
     };
 
     // If direction is right, we set the overflowX property to 'hidden' to hide the x scrollbar during
@@ -435,7 +438,11 @@ export default class Drawer extends Component {
             <div
               id={id}
               style={containerStyle}
-              onClick={this.hideDrawer}
+              onClick={() => {
+                if (!disableBackDrop) {
+                  this.hideDrawer();
+                }
+              }}
               className={`${Container} ${containerElementClass} `}
               ref={getContainerRef}
             >
@@ -446,7 +453,7 @@ export default class Drawer extends Component {
 
               <div
                 onClick={this.stopPropagation}
-                style={this.getDrawerTransform(translate)}
+                style={{...this.getDrawerTransform(translate), pointerEvents: "auto"}}
                 ref={this.attachListeners}
                 className={this.props.modalElementClass || ""}
               >

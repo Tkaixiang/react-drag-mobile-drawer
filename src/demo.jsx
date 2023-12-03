@@ -1,5 +1,4 @@
-import React, { PureComponent } from "react";
-import GithubBadge from "react-github-badge";
+import  { PureComponent } from "react";
 import { createRoot } from "react-dom/client";
 import { css } from "@emotion/css";
 
@@ -11,45 +10,38 @@ class Demo extends PureComponent {
     sidebarLeft: false,
     sidebarRight: false,
     asyncHeight: false,
-    crazyStyle: false
+    crazyStyle: false,
+    mobileStyle: false,
   };
 
-  toggle = (type, value) => event => {
-    this.setState(state => {
+  toggle = (type, value) => (event) => {
+    this.setState((state) => {
       return {
-        [type]: value
+        [type]: value,
       };
     });
   };
 
   render() {
-    const {
-      regular,
-      sidebarLeft,
-      sidebarRight,
-      asyncHeight,
-      crazyStyle
-    } = this.state;
+    const { regular, sidebarLeft, sidebarRight, asyncHeight, crazyStyle, mobileStyle } =
+      this.state;
 
     return (
       <div className={`${Reset} ${Container}`}>
-        <GithubBadge
-          title="Star on Github"
-          url="https://github.com/hanford/react-drag-drawer"
-        />
 
-        <h1>React Drag Drawer</h1>
+        <h1>React Mobile Drawer</h1>
 
         <Info>
-          react-drag-drawer is a lightweight, performant, drawer/modal component
-          that can be dragged close. The animations are done with react-motion
-          so they feel very natural
+          react-mobile-drawer is a lightweight, performant, drawer/modal component
+          that can be dragged close. The animations are powered by react-motion
+          and hence they feel very natural. <br/><br/>
+          <u><b>Note:</b></u> This is an updated fork of the original <a href="https://github.com/hanford/react-drag-drawer">react-drag-drawer</a> with some additional APIs
         </Info>
         <button onClick={this.toggle("regular", true)} className={Toggle}>
           Open example
         </button>
         <pre className={Code}>
-          {`import Drawer from 'react-drag-drawer'
+          {`import Drawer from 'react-mobile-drawer'
 
 ..
 
@@ -76,7 +68,7 @@ render () {
         <div className={Break} />
 
         <Info>
-          react-drag-drawer uses native HTML5 scrolling to remain performant and
+          react-mobile-drawer uses native HTML5 scrolling to remain performant and
           to properly respond to async data / components
         </Info>
         <button onClick={this.toggle("asyncHeight", true)} className={Toggle}>
@@ -85,14 +77,14 @@ render () {
         <div className={Break} />
 
         <Info>
-          You can also use react-drag-drawer to build sidebars by simply
+          You can also use react-mobile-drawer to build sidebars by simply
           changing the `direction` prop
         </Info>
         <button onClick={this.toggle("sidebarLeft", true)} className={Toggle}>
           Left Sidebar
         </button>
         <pre className={Code}>
-          {`import Drawer from 'react-drag-drawer'
+          {`import Drawer from 'react-mobile-drawer'
 
 ..
 
@@ -111,7 +103,7 @@ render () {
           Right Sidebar
         </button>
         <pre className={Code}>
-          {`import Drawer from 'react-drag-drawer'
+          {`import Drawer from 'react-mobile-drawer'
 
 ..
 
@@ -127,14 +119,14 @@ render () {
         <div className={Break} />
 
         <Info>
-          react-drag-drawer assumes nothing about your styles and is left
+          react-mobile-drawer assumes nothing about your styles and is left
           entirely up to you how you want to style it
         </Info>
         <button onClick={this.toggle("crazyStyle", true)} className={Toggle}>
           Different style
         </button>
         <pre className={Code}>
-          {`import Drawer from 'react-drag-drawer'
+          {`import Drawer from 'react-mobile-drawer'
 
 ..
 
@@ -150,11 +142,54 @@ render () {
         <div className={Break} />
 
         <Info>
+          An example draggable mobile drawer that can be opened to full screen. Similar to the drawer on apps such as Google Maps. <br/><br/> 
+          Dragging only works on mobile and the background can still be interacted with even when the drawer is open thanks to the <code>disableBackDrop</code> prop.
+        </Info>
+        <button onClick={this.toggle("mobileStyle", true)} className={Toggle}>
+          Mobile Drawer
+        </button>
+        <pre className={Code}>
+          {`import Drawer from 'react-mobile-drawer'
+...
+<Drawer
+open={mobileStyle}
+disableBackDrop
+onRequestClose={this.toggle("mobileStyle", false)}
+modalElementClass={MobileStyles}
+>
+<div className={Card} style={{margin: 0}}>
+  I'm a mobile drawer
+  <button
+    className={Toggle}
+    onClick={this.toggle("mobileStyle", false)}
+  >
+    Close drawer
+  </button>
+</div>
+</Drawer>
+...
+const MobileStyles = css\` // Note that this is using emotion/css
+  position: absolute;
+  background-color: #e0e0e0;
+  width: 100%;
+  max-width: 100%;
+  top: 70% !important;
+  height: 100%;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  pointer-events: auto !important;
+\`
+        `}
+        </pre>
+
+        <div className={Break} />
+
+        <Info>
           You can conditionally apply event listeners by using the
           dontApplyListeners prop
         </Info>
         <pre className={Code}>
-          {`import Drawer from 'react-drag-drawer'
+          {`import Drawer from 'react-mobile-drawer'
 
 ..
 
@@ -170,17 +205,17 @@ render () {
         <div className={Break} />
 
         <Info>
-          react-drag-drawer has a{" "}
+          react-mobile-drawer has a{" "}
           <a
             target="_blank"
-            href="https://github.com/hanford/react-drag-drawer#api"
+            href="https://github.com/hanford/react-mobile-drawer#api"
           >
             small but extensive API
           </a>{" "}
           that allows for some very cool customizations. The code for this
           website can be found{" "}
           <a
-            href="https://github.com/hanford/react-drag-drawer/blob/master/demo/src/index.js"
+            href="https://github.com/hanford/react-mobile-drawer/blob/master/demo/src/index.js"
             targert="_blank"
           >
             on github.
@@ -188,7 +223,7 @@ render () {
         </Info>
 
         <pre className={Code}>
-          {`import Drawer from 'react-drag-drawer'
+          {`import Drawer from 'react-mobile-drawer'
 
 ..
 
@@ -213,6 +248,7 @@ render () {
 
         <Drawer
           open={regular}
+          disableBackDrop={true}
           onRequestClose={this.toggle("regular", false)}
           modalElementClass={ModalElement}
         >
@@ -274,6 +310,24 @@ render () {
           </div>
         </Drawer>
 
+        <Drawer
+          open={mobileStyle}
+          disableBackDrop
+          onRequestClose={this.toggle("mobileStyle", false)}
+          modalElementClass={MobileStyles}
+        >
+          <div className={Card} style={{margin: 0}}>
+            I'm a mobile drawer
+            <button
+              className={Toggle}
+              onClick={this.toggle("mobileStyle", false)}
+            >
+              Close drawer
+            </button>
+          </div>
+        </Drawer>
+
+
         <AsyncHeightDrawer
           open={asyncHeight}
           onRequestClose={this.toggle("asyncHeight", false)}
@@ -288,7 +342,7 @@ const Info = ({ children }) => <p className={InfoComponent}>{children}</p>;
 
 class AsyncHeightDrawer extends PureComponent {
   state = {
-    asyncData: []
+    asyncData: [],
   };
 
   componentWillReceiveProps(nextProps) {
@@ -343,6 +397,18 @@ const Reset = css`
 const Content = css`
   background-color: white;
 `;
+
+const MobileStyles = css`
+  position: absolute;
+  background-color: #e0e0e0;
+  width: 100%;
+  max-width: 100%;
+  top: 70% !important;
+  height: 100%;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  pointer-events: auto !important;
+`
 
 const Card = css`
   height: 100%;
@@ -448,7 +514,6 @@ const Code = css`
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 `;
-
 
 const root = createRoot(document.querySelector("#root"));
 root.render(<Demo />);
