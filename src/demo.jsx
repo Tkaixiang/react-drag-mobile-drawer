@@ -1,8 +1,8 @@
-import { PureComponent } from "react";
+import React, { PureComponent } from "react";
 import { createRoot } from "react-dom/client";
 import { css } from "@emotion/css";
 
-import Drawer from "../lib/index";
+import Drawer from "../dist/main";
 
 class Demo extends PureComponent {
   state = {
