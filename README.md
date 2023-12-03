@@ -4,8 +4,10 @@
 
 > Mobile draggable drawer that falls back to modals on desktop
 
-[npm-badge]: https://img.shields.io/npm/v/react-mobile-drawer.png?style=flat-square
-[npm]: https://www.npmjs.org/package/react-mobile-drawer
+This is an updated **fork** of the original [react-drag-drawer](https://www.npmjs.com/package/react-drag-drawer) with some additional APIs and updated dependencies
+
+[npm-badge]: https://img.shields.io/npm/v/react-drag-mobile-drawer.png?style=flat-square
+[npm]: https://www.npmjs.org/package/react-drag-mobile-drawer
 
 [Live demo!](https://drawer.parkaholic.sg)
 
@@ -46,23 +48,23 @@ render () {
 
 | Param                 | Type     | functionality                                               | required |
 | --------------------- | -------- | ----------------------------------------------------------- | -------- |
-| open                  | Boolean  | null                                                        | true     |
+| allowClose            | Boolean  | block closing if allowClose={false}, default is true        | false    |
 | children              | Node     | null                                                        | true     |
-| onRequestClose        | Function | null                                                        | true     |
+| containerElementClass | String   | className to be applied to the drawer container element     | false    |
+| containerOpacity      | Number   | Controls the **container's opacity**                        | 0.6      |
+| direction             | String   | direction to translate drawer                               | false    |
+| disableBackDrop       | Boolean  | Disables the backdrop/background and allows for background scrolling   | false    |
+| dontApplyListeners    | Boolean  | skip applying internal event listeners to the dom           | false    |
+| getContainerRef       | Function | get container (overlay) ref                                 | false    |
+| getModalRef           | Function | get modal (draggable element) ref                           | false    |
+| inViewportChange      | Function | detect when drawer is at top of viewport                    | false    |
+| modalElementClass     | String   | className to be applied to top <Drawer> element             | false    |
+| notifyWillClose       | Function | notify consumer if the drawer will close at touch release   | false    |
 | onDrag                | Function | invoked on drag                                             | false    |
 | onOpen                | Function | invoked on drawer focus                                     | false    |
-| notifyWillClose       | Function | notify consumer if the drawer will close at touch release   | false    |
-| allowClose            | Boolean  | block closing if allowClose={false}, default is true        | false    |
-| modalElementClass     | String   | className to be applied to top <Drawer> element             | false    |
-| containerElementClass | String   | className to be applied to the drawer container element     | false    |
+| open                  | Boolean  | null                                                        | true     |
+| onRequestClose        | Function | null                                                        | true     |
 | parentElement         | ref      | block scrolls on element if you're not using body scrolling | false    |
-| direction             | String   | direction to translate drawer                               | false    |
-| dontApplyListeners    | Boolean  | skip applying internal event listeners to the dom           | false    |
-| inViewportChange      | Function | detect when drawer is at top of viewport                    | false    |
-| getModalRef           | Function | get modal (draggable element) ref                           | false    |
-| getContainerRef       | Function | get container (overlay) ref                                 | false    |
-| disableBackDrop       | Boolean  | Disables the backdrop/background and allows for background scrolling   | false    |
-| containerOpacity       | Number  | Controls the **container's opacity**   | 0.6    |
 
 Example modal style
 
