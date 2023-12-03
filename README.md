@@ -51,7 +51,7 @@ render () {
 | allowClose            | Boolean  | block closing if allowClose={false}, default is true        | false    |
 | children              | Node     | null                                                        | true     |
 | containerElementClass | String   | className to be applied to the drawer container element     | false    |
-| containerOpacity      | Number   | Controls the **container's opacity**                        | 0.6      |
+| containerOpacity      | Number   | Controls the **container's opacity** (default 0.6)                      | false      |
 | direction             | String   | direction to translate drawer                               | false    |
 | disableBackDrop       | Boolean  | Disables the backdrop/background and allows for background scrolling   | false    |
 | dontApplyListeners    | Boolean  | skip applying internal event listeners to the dom           | false    |
