@@ -9,7 +9,7 @@ This is an updated **fork** of the original [react-drag-drawer](https://www.npmj
 [npm-badge]: https://img.shields.io/npm/v/react-drag-mobile-drawer.png?style=flat-square
 [npm]: https://www.npmjs.org/package/react-drag-mobile-drawer
 
-[Live demo!](https://drawer.parkaholic.sg)
+[Live demo!](https://demo.parkaholic.sg)
 
 ## Install
 

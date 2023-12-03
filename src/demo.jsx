@@ -1,4 +1,4 @@
-import  { PureComponent } from "react";
+import { PureComponent } from "react";
 import { createRoot } from "react-dom/client";
 import { css } from "@emotion/css";
 
@@ -23,19 +23,55 @@ class Demo extends PureComponent {
   };
 
   render() {
-    const { regular, sidebarLeft, sidebarRight, asyncHeight, crazyStyle, mobileStyle } =
-      this.state;
+    const {
+      regular,
+      sidebarLeft,
+      sidebarRight,
+      asyncHeight,
+      crazyStyle,
+      mobileStyle,
+    } = this.state;
 
     return (
       <div className={`${Reset} ${Container}`}>
+        <h1>React Drag Mobile Drawer</h1>
 
-        <h1>React Mobile Drawer</h1>
+        <div style={{ display: "flex" }}>
+          <img
+            src={
+              "https://img.shields.io/npm/v/react-drag-mobile-drawer.png?style=flat-square"
+            }
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              window.location.href =
+                "https://www.npmjs.com/package/react-drag-mobile-drawer";
+            }}
+          />
+          <img
+            src={
+              "https://badgen.net/github/release/tkaixiang/react-drag-mobile-drawer"
+            }
+            style={{ cursor: "pointer", marginLeft: "1ch" }}
+            onClick={() => {
+              window.location.href =
+                "https://github.com/Tkaixiang/react-drag-mobile-drawer";
+            }}
+          />
+        </div>
 
         <Info>
-          react-drag-mobile-drawer is a lightweight, performant, drawer/modal component
-          that can be dragged close. The animations are powered by react-motion
-          and hence they feel very natural. <br/><br/>
-          <u><b>Note:</b></u> This is an updated fork of the original <a href="https://github.com/hanford/react-drag-drawer">react-drag-drawer</a> with some additional APIs
+          react-drag-mobile-drawer is a lightweight, performant, drawer/modal
+          component that can be dragged close. The animations are powered by
+          react-motion and hence they feel very natural. <br />
+          <br />
+          <u>
+            <b>Note:</b>
+          </u>{" "}
+          This is an updated fork of the original{" "}
+          <a href="https://github.com/hanford/react-drag-drawer">
+            react-drag-drawer
+          </a>{" "}
+          with some additional APIs
         </Info>
         <button onClick={this.toggle("regular", true)} className={Toggle}>
           Open example
@@ -68,8 +104,8 @@ render () {
         <div className={Break} />
 
         <Info>
-          react-drag-mobile-drawer uses native HTML5 scrolling to remain performant and
-          to properly respond to async data / components
+          react-drag-mobile-drawer uses native HTML5 scrolling to remain
+          performant and to properly respond to async data / components
         </Info>
         <button onClick={this.toggle("asyncHeight", true)} className={Toggle}>
           Async height
@@ -142,8 +178,12 @@ render () {
         <div className={Break} />
 
         <Info>
-          An example draggable mobile drawer that can be opened to full screen. Similar to the drawer on apps such as Google Maps. <br/><br/> 
-          Dragging only works on mobile and the background can still be interacted with even when the drawer is open thanks to the <code>disableBackDrop</code> prop.
+          An example draggable mobile drawer that can be opened to full screen.
+          Similar to the drawer on apps such as Google Maps. <br />
+          <br />
+          Dragging only works on mobile and the background can still be
+          interacted with even when the drawer is open thanks to the{" "}
+          <code>disableBackDrop</code> prop.
         </Info>
         <button onClick={this.toggle("mobileStyle", true)} className={Toggle}>
           Mobile Drawer
@@ -208,14 +248,14 @@ const MobileStyles = css\` // Note that this is using emotion/css
           react-drag-mobile-drawer has a{" "}
           <a
             target="_blank"
-            href="https://github.com/hanford/react-drag-mobile-drawer#api"
+            href="https://github.com/Tkaixiang/react-drag-mobile-drawer"
           >
             small but extensive API
           </a>{" "}
           that allows for some very cool customizations. The code for this
           website can be found{" "}
           <a
-            href="https://github.com/hanford/react-drag-mobile-drawer/blob/master/demo/src/index.js"
+            href="https://github.com/Tkaixiang/react-drag-mobile-drawer/blob/main/src/demo.jsx"
             targert="_blank"
           >
             on github.
@@ -316,7 +356,7 @@ const MobileStyles = css\` // Note that this is using emotion/css
           onRequestClose={this.toggle("mobileStyle", false)}
           modalElementClass={MobileStyles}
         >
-          <div className={Card} style={{margin: 0}}>
+          <div className={Card} style={{ margin: 0 }}>
             I'm a mobile drawer
             <button
               className={Toggle}
@@ -326,7 +366,6 @@ const MobileStyles = css\` // Note that this is using emotion/css
             </button>
           </div>
         </Drawer>
-
 
         <AsyncHeightDrawer
           open={asyncHeight}
@@ -408,7 +447,7 @@ const MobileStyles = css`
   will-change: transform;
   transform: translate3d(0, 0, 0);
   pointer-events: auto !important;
-`
+`;
 
 const Card = css`
   height: 100%;
