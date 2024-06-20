@@ -3,7 +3,7 @@ import { Motion, spring, presets } from "react-motion";
 import PropTypes from "prop-types";
 import { InView } from "react-intersection-observer";
 import { createPortal } from "react-dom";
-import './main.css'
+import "./main.css";
 
 import {
   isDirectionBottom,
@@ -38,7 +38,7 @@ export default class Drawer extends Component {
     getContainerRef: PropTypes.func,
     getModalRef: PropTypes.func,
     dontApplyListeners: PropTypes.bool,
-    id: PropTypes.string
+    id: PropTypes.string,
   };
 
   static defaultProps = {
@@ -75,11 +75,11 @@ export default class Drawer extends Component {
   componentDidMount() {
     if (this.props.direction === "y")
       console.warn(
-        "Direction prop is now takes up or down, y is no longer supported!"
+        "Direction prop is now takes up or down, y is no longer supported!",
       );
     if (this.props.direction === "x")
       console.warn(
-        "Direction prop is now takes left or right, x is no longer supported!"
+        "Direction prop is now takes left or right, x is no longer supported!",
       );
   }
 
@@ -410,8 +410,10 @@ export default class Drawer extends Component {
 
     // Style object for the container element
     let containerStyle = {
-      backgroundColor: disableBackDrop ? "rgba(255,255,255, 0)" : `rgba(55, 56, 56, ${open ? containerOpacity : 0})`,
-      pointerEvents: disableBackDrop ? "none" : "auto"
+      backgroundColor: disableBackDrop
+        ? "rgba(255,255,255, 0)"
+        : `rgba(55, 56, 56, ${open ? containerOpacity : 0})`,
+      pointerEvents: disableBackDrop ? "none" : "auto",
     };
 
     // If direction is right, we set the overflowX property to 'hidden' to hide the x scrollbar during
@@ -452,7 +454,10 @@ export default class Drawer extends Component {
 
               <div
                 onClick={this.stopPropagation}
-                style={{...this.getDrawerTransform(translate), pointerEvents: "auto"}}
+                style={{
+                  ...this.getDrawerTransform(translate),
+                  pointerEvents: "auto",
+                }}
                 ref={this.attachListeners}
                 className={this.props.modalElementClass || ""}
               >
@@ -462,7 +467,7 @@ export default class Drawer extends Component {
           );
         }}
       </Motion>,
-      this.props.parentElement
+      this.props.parentElement,
     );
   }
 }

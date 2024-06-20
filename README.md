@@ -7,7 +7,7 @@
 This is an updated **fork** of the original [react-drag-drawer](https://www.npmjs.com/package/react-drag-drawer) with some additional APIs and updated dependencies, namely:
 
 - Added a `disableBackDrop` prop option
-- Updated dependencies to use `preact` instead for a much smaller bundle size
+- Updated dependencies for a much smaller bundle size
 
 [npm-badge]: https://img.shields.io/npm/v/react-drag-mobile-drawer.png?style=flat-square
 [npm]: https://www.npmjs.org/package/react-drag-mobile-drawer

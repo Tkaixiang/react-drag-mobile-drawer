@@ -1,7 +1,7 @@
 {
   "name": "react-drag-mobile-drawer",
   "private": false,
-  "version": "1.0.9",
+  "version": "1.0.12",
   "type": "module",
   "main": "dist/main.js",
   "files": [
@@ -27,7 +27,6 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "preact": "^10.22.0",
     "react": ">=18.2.0",
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.10.3",
@@ -36,10 +35,9 @@
   },
   "devDependencies": {
     "@emotion/css": "^11.11.2",
-    "@preact/preset-vite": "^2.8.2",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
-    "@vitejs/plugin-react": "^4.2.0",
+    "@vitejs/plugin-react": "^4.3.1",
     "eslint": "^8.53.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",

@@ -1,11 +1,11 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
 import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
-import preact from "@preact/preset-vite";
+import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [preact({ reactAliasesEnabled: true }), cssInjectedByJsPlugin()],
+  plugins: [react({ jsxRuntime: "classic" }), cssInjectedByJsPlugin()],
   build: {
     lib: {
       // eslint-disable-next-line no-undef
@@ -14,7 +14,7 @@ export default defineConfig({
     },
     cssCodeSplit: false,
     rollupOptions: {
-      external: ["react", "react/jsx-runtime"],
+      external: ["react", "react-dom", "react/jsx-runtime"],
       output: {
         manualChunks: false,
         entryFileNames: "main.js",
