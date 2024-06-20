@@ -184,6 +184,15 @@ render () {
           Dragging only works on mobile and the background can still be
           interacted with even when the drawer is open thanks to the{" "}
           <code>disableBackDrop</code> prop.
+          <br />
+          <br />
+          <u>
+            <b>Note:</b>
+          </u>{" "}
+          There appears to be a bug where <code>webkit</code> browsers (iOS
+          browsers) do not respect the scrolling of a child element with{" "}
+          <code>pointer-events: auto</code> when the parent element has{" "}
+          <code>pointer-events: none</code>.
         </Info>
         <button onClick={this.toggle("mobileStyle", true)} className={Toggle}>
           Mobile Drawer
@@ -249,6 +258,7 @@ const MobileStyles = css\` // Note that this is using emotion/css
           <a
             target="_blank"
             href="https://github.com/Tkaixiang/react-drag-mobile-drawer"
+            rel="noreferrer"
           >
             small but extensive API
           </a>{" "}
@@ -256,7 +266,8 @@ const MobileStyles = css\` // Note that this is using emotion/css
           website can be found{" "}
           <a
             href="https://github.com/Tkaixiang/react-drag-mobile-drawer/blob/main/src/demo.jsx"
-            targert="_blank"
+            target="_blank"
+            rel="noreferrer"
           >
             on github.
           </a>
