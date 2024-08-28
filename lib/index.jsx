@@ -13,7 +13,7 @@ import {
   isClientSide,
 } from "./helpers";
 
-export default class Drawer extends Component {
+export class Drawer extends Component {
   static propTypes = {
     open: PropTypes.bool.isRequired,
     disableBackDrop: PropTypes.bool,

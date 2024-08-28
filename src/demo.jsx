@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import { createRoot } from "react-dom/client";
 import { css } from "@emotion/css";
 
-import Drawer from "../dist/main";
+import { Drawer } from "../";
 
 class Demo extends PureComponent {
   state = {
@@ -77,7 +77,7 @@ class Demo extends PureComponent {
           Open example
         </button>
         <pre className={Code}>
-          {`import Drawer from 'react-drag-mobile-drawer'
+          {`import { Drawer } from 'react-drag-mobile-drawer'
 
 ..
 
@@ -120,7 +120,7 @@ render () {
           Left Sidebar
         </button>
         <pre className={Code}>
-          {`import Drawer from 'react-drag-mobile-drawer'
+          {`import { Drawer } from 'react-drag-mobile-drawer'
 
 ..
 
@@ -139,7 +139,7 @@ render () {
           Right Sidebar
         </button>
         <pre className={Code}>
-          {`import Drawer from 'react-drag-mobile-drawer'
+          {`import { Drawer } from 'react-drag-mobile-drawer'
 
 ..
 
@@ -162,7 +162,7 @@ render () {
           Different style
         </button>
         <pre className={Code}>
-          {`import Drawer from 'react-drag-mobile-drawer'
+          {`import { Drawer } from 'react-drag-mobile-drawer'
 
 ..
 
@@ -198,7 +198,7 @@ render () {
           Mobile Drawer
         </button>
         <pre className={Code}>
-          {`import Drawer from 'react-drag-mobile-drawer'
+          {`import { Drawer } from 'react-drag-mobile-drawer'
 ...
 <Drawer
 open={mobileStyle}
@@ -238,7 +238,7 @@ const MobileStyles = css\` // Note that this is using emotion/css
           dontApplyListeners prop
         </Info>
         <pre className={Code}>
-          {`import Drawer from 'react-drag-mobile-drawer'
+          {`import { Drawer } from 'react-drag-mobile-drawer'
 
 ..
 
@@ -274,7 +274,7 @@ const MobileStyles = css\` // Note that this is using emotion/css
         </Info>
 
         <pre className={Code}>
-          {`import Drawer from 'react-drag-mobile-drawer'
+          {`import { Drawer } from 'react-drag-mobile-drawer'
 
 ..
 

@@ -8,6 +8,7 @@ This is an updated **fork** of the original [react-drag-drawer](https://www.npmj
 
 - Added a `disableBackDrop` prop option
 - Updated dependencies for a much smaller bundle size
+- Added TypeScript support
 
 [npm-badge]: https://img.shields.io/npm/v/react-drag-mobile-drawer.png?style=flat-square
 [npm]: https://www.npmjs.org/package/react-drag-mobile-drawer
@@ -23,7 +24,7 @@ $ npm i react-drag-mobile-drawer
 ## Usage
 
 ```js
-import Drawer from 'react-drag-mobile-drawer'
+import { Drawer } from 'react-drag-mobile-drawer' // Note the named export change here
 
 ..
 
