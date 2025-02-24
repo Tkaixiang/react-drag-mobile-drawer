@@ -5,7 +5,7 @@ import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react({ jsxRuntime: "classic" }), cssInjectedByJsPlugin()],
+  plugins: [react(), cssInjectedByJsPlugin()],
   build: {
     lib: {
       // eslint-disable-next-line no-undef
@@ -14,7 +14,6 @@ export default defineConfig({
     },
     cssCodeSplit: false,
     rollupOptions: {
-      external: ["react", "react-dom", "react/jsx-runtime"],
       output: {
         manualChunks: false,
         entryFileNames: "main.js",

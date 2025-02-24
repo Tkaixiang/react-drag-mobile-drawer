@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { Motion, spring, presets } from "react-motion";
 import PropTypes from "prop-types";
 import { InView } from "react-intersection-observer";
@@ -15,7 +15,7 @@ import {
 
 export class Drawer extends Component {
   static propTypes = {
-    open: PropTypes.bool.isRequired,
+    open: PropTypes.bool.isRequired,  
     disableBackDrop: PropTypes.bool,
     children: PropTypes.oneOfType([
       PropTypes.object,
