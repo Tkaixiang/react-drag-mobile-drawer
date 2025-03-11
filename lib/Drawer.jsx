@@ -3,7 +3,7 @@ import { Motion, spring, presets } from "react-motion";
 import PropTypes from "prop-types";
 import { InView } from "react-intersection-observer";
 import { createPortal } from "react-dom";
-import "./main.css";
+import "./Drawer.css";
 
 import {
   isDirectionBottom,
@@ -15,7 +15,7 @@ import {
 
 export class Drawer extends Component {
   static propTypes = {
-    open: PropTypes.bool.isRequired,  
+    open: PropTypes.bool.isRequired,
     disableBackDrop: PropTypes.bool,
     children: PropTypes.oneOfType([
       PropTypes.object,
