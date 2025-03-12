@@ -14,7 +14,7 @@ export const MobileDrawer = ({
     bounceStiffness: 300,
     timeConstant: 150,
     bounceDamping: 30,
-    power: 0.7,
+    power: 0.8,
   },
   onRequestClose,
   open = false,
