@@ -58,66 +58,10 @@ class Demo extends PureComponent {
         </div>
 
         <Info>
-          An example draggable mobile drawer that can be opened to full screen.
-          Similar to the drawer on apps such as Google Maps. <br />
+          <code>react-drag-mobile-drawer</code> is a lightweight, performant,
+          drawer/modal component that can be dragged around smoothly (much like
+          a mobile drawer).
           <br />
-          Dragging only works on mobile and the background can still be
-          interacted with even when the drawer is open thanks to the{" "}
-          <code>disableBackDrop</code> prop.
-          <br />
-          <br />
-          <u>
-            <b>Note:</b>
-          </u>{" "}
-          There appears to be a bug where <code>webkit</code> browsers (iOS
-          browsers) do not respect the scrolling of a child element with{" "}
-          <code>pointer-events: auto</code> when the parent element has{" "}
-          <code>pointer-events: none</code>.
-        </Info>
-        <button
-          onClick={this.toggle("mobileStyle", true)}
-          className={styles.Toggle}
-        >
-          Mobile Drawer
-        </button>
-        <pre className={styles.Code}>
-          {`import { Drawer } from 'react-drag-mobile-drawer'
-...
-<Drawer
-open={mobileStyle}
-disableBackDrop
-onRequestClose={this.toggle("mobileStyle", false)}
-modalElementClass={MobileStyles}
->
-<div className={Card} style={{margin: 0}}>
-  I'm a mobile drawer
-  <button
-    className={Toggle}
-    onClick={this.toggle("mobileStyle", false)}
-  >
-    Close drawer
-  </button>
-</div>
-</Drawer>
-...
-const MobileStyles = css\` // Note that this is using emotion/css
-  position: absolute;
-  background-color: #e0e0e0;
-  width: 100%;
-  max-width: 100%;
-  top: 70% !important;
-  height: 100%;
-  will-change: transform;
-  transform: translate3d(0, 0, 0);
-  pointer-events: auto !important;
-\`
-        `}
-        </pre>
-
-        <Info>
-          react-drag-mobile-drawer is a lightweight, performant, drawer/modal
-          component that can be dragged close. The animations are powered by
-          react-motion and hence they feel very natural. <br />
           <br />
           <u>
             <b>Note:</b>
@@ -126,8 +70,70 @@ const MobileStyles = css\` // Note that this is using emotion/css
           <a href="https://github.com/hanford/react-drag-drawer">
             react-drag-drawer
           </a>{" "}
-          with some additional APIs
+          with some notable changes: <br />- New <code>MobileDrawer</code>{" "}
+          component based off <a href="https://motion.dev/">motion</a> instead{" "}
+          <br />
+          - Supports React 18 OR React 19
+          <br />- Added a <code>disableBackDrop</code> prop <br />
+          - Updated dependencies for a much smaller bundle size <br />- Added
+          TypeScript support
         </Info>
+
+        <div className={styles.Break} />
+
+        <Info>
+          <h1>
+            <code>&lt;MobileDrawer/&gt;</code> Example 🆕
+          </h1>
+          <div className={styles.Break} />
+          An example draggable mobile drawer that can be opened to full screen.
+          Similar to drawers on apps such as Google Maps. <br />
+        </Info>
+        <button
+          onClick={this.toggle("mobileStyle", true)}
+          className={styles.Toggle}
+        >
+          Mobile Drawer
+        </button>
+        <pre className={styles.Code}>
+          {`import { MobileDrawer } from 'react-drag-mobile-drawer'
+...
+<MobileDrawer
+  open={mobileStyle}
+  onRequestClose={this.toggle("mobileStyle", false)}
+>
+  <div className={styles.MobileStyles}>
+    <span>I am a mobile drawer!</span>
+    <button
+      className={styles.Toggle}
+      onClick={this.toggle("mobileStyle", false)}
+    >
+      Close drawer
+    </button>
+  </div>
+</MobileDrawer>
+...
+export const MobileStyles = css\`
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  height: 400px;
+  width: 100vw;
+\`;
+        `}
+        </pre>
+
+        <div className={styles.Break} />
+
+        <h1>
+          <code>&lt;Drawer/&gt;</code> Examples
+        </h1>
+
+        <div className={styles.Break} />
+
         <button
           onClick={this.toggle("regular", true)}
           className={styles.Toggle}
@@ -162,7 +168,7 @@ render () {
         <div className={styles.Break} />
 
         <Info>
-          react-drag-mobile-drawer uses native HTML5 scrolling to remain
+          <code>&lt;Drawer/&gt;</code> uses native HTML5 scrolling to remain
           performant and to properly respond to async data / components
         </Info>
         <button
@@ -174,8 +180,8 @@ render () {
         <div className={styles.Break} />
 
         <Info>
-          You can also use react-drag-mobile-drawer to build sidebars by simply
-          changing the `direction` prop
+          You can also use <code>&lt;Drawer/&gt;</code> to build sidebars by
+          simply changing the <code>direction</code> prop
         </Info>
         <button
           onClick={this.toggle("sidebarLeft", true)}
@@ -222,8 +228,8 @@ render () {
         <div className={styles.Break} />
 
         <Info>
-          react-drag-mobile-drawer assumes nothing about your styles and is left
-          entirely up to you how you want to style it
+          <code>&lt;Drawer/&gt;</code> assumes nothing about your styles and is
+          left entirely up to you how you want to style it
         </Info>
         <button
           onClick={this.toggle("crazyStyle", true)}
@@ -269,7 +275,7 @@ render () {
         <div className={styles.Break} />
 
         <Info>
-          react-drag-mobile-drawer has a{" "}
+          <code>&lt;Drawer/&gt;</code> has a{" "}
           <a
             target="_blank"
             href="https://github.com/Tkaixiang/react-drag-mobile-drawer"
@@ -378,20 +384,26 @@ render () {
           </div>
         </Drawer>
 
-        <MobileDrawer
-          open={mobileStyle}
-          onRequestClose={this.toggle("mobileStyle", false)}
-        >
-          {Array.from({ length: 20 }).map((_, i) => (
-            <h1 style={{ color: "white" }}>Hello!</h1>
-          ))}
-        </MobileDrawer>
-
         <AsyncHeightDrawer
           open={asyncHeight}
           onRequestClose={this.toggle("asyncHeight", false)}
           modalElementClass={styles.HugeList}
         />
+
+        <MobileDrawer
+          open={mobileStyle}
+          onRequestClose={this.toggle("mobileStyle", false)}
+        >
+          <div className={styles.MobileStyles}>
+            <span>I am a mobile drawer!</span>
+            <button
+              className={styles.Toggle}
+              onClick={this.toggle("mobileStyle", false)}
+            >
+              Close drawer
+            </button>
+          </div>
+        </MobileDrawer>
       </div>
     );
   }

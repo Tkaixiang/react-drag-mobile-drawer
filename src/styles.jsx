@@ -17,15 +17,14 @@ export const Content = css`
 `;
 
 export const MobileStyles = css`
-  position: absolute;
-  background-color: #e0e0e0;
-  width: 100%;
-  max-width: 100%;
-  top: 70% !important;
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
   height: 100vh;
-  will-change: transform;
-  transform: translate3d(0, 0, 0);
-  pointer-events: auto !important;
+  width: 100vw;
 `;
 
 export const Card = css`
