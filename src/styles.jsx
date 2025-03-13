@@ -23,7 +23,7 @@ export const MobileStyles = css`
   align-items: center;
   flex-direction: column;
   gap: 10px;
-  height: 100vh;
+  height: fit-content;
   width: 100vw;
 `;
 

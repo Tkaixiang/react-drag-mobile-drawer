@@ -11,9 +11,20 @@ class Demo extends PureComponent {
     asyncHeight: false,
     crazyStyle: false,
     mobileStyle: false,
+    test: 100,
+    changeText: "I am a mobile drawer!",
   };
 
   toggle = (type, value) => (event) => {
+    if (type === "mobileStyle") {
+      setTimeout(() => {
+        this.setState({ test: 10 });
+      }, 5000);
+      setTimeout(() => {
+        this.setState({ changeText: "hello!" });
+      }, 5000);
+    }
+
     this.setState((state) => {
       return {
         [type]: value,
@@ -87,7 +98,11 @@ class Demo extends PureComponent {
           </h1>
           <div className={styles.Break} />
           An example draggable mobile drawer that can be opened to full screen.
-          Similar to drawers on apps such as Google Maps. <br />
+          Similar to drawers on apps such as Google Maps.
+          <br />
+          <br />
+          Will animate back to its "Peeking Height" if any of the props change,
+          or if the height of the drawer changes
         </Info>
         <button
           onClick={this.toggle("mobileStyle", true)}
@@ -395,7 +410,10 @@ render () {
           onRequestClose={this.toggle("mobileStyle", false)}
         >
           <div className={styles.MobileStyles}>
-            <span>I am a mobile drawer!</span>
+            <span>{this.state.changeText}</span>
+            {Array.from({ length: this.state.test }).map((_, index) => (
+              <div key={index}>{index}</div>
+            ))}
             <button
               className={styles.Toggle}
               onClick={this.toggle("mobileStyle", false)}
