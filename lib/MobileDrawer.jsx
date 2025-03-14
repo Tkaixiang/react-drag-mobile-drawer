@@ -140,10 +140,6 @@ export const MobileDrawer = ({
           }}
           onDragEnd={(e, info) => {
             shouldWeCloseDrawer(e, info);
-            const { bottom } = drawerRef.current.getBoundingClientRect();
-
-            console.log("yValue: ", getYTranslate(drawerRef.current));
-            console.log("scrollHeight: ", drawerRef.current.scrollHeight);
           }}
           drag="y"
           dragElastic={dragElastic}
