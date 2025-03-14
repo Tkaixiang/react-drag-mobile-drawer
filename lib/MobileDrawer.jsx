@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { convertToPixels } from "./utils/utils";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import "./MobileDrawer.css";
+import { getYTranslate } from "./mobileDrawerHelpers";
 
 export const MobileDrawer = ({
   // sorted properties:
@@ -45,15 +46,6 @@ export const MobileDrawer = ({
     }
   }, [open, shouldRender, children, parentElement, peakHeight, closeThreshold]);
 
-  useEffect(() => {
-    if (maximumScroll !== 0 && maximumScrollBottom !== 0) {
-      // TODO: fix this part
-      console.log("re-adjusting");
-      console.log(peakHeightPx.current);
-      setDrawerAnimate({ y: -peakHeightPx.current });
-    }
-  }, [maximumScroll, maximumScrollBottom]);
-
   /**
    * Calculates the peakHeight, maximum upper scroll and closeThreshold in pixels
    * Triggers the opening process via openDrawerToPeeking()
@@ -64,6 +56,14 @@ export const MobileDrawer = ({
   const performCaluclations = () => {
     peakHeightPx.current = convertToPixels(peakHeight, parentElement);
     closeThresholdPx.current = convertToPixels(closeThreshold, parentElement);
+
+    // Check if we need to adjust back to "peeking" height because of SHORTER content
+    if (
+      Math.abs(getYTranslate(drawerRef.current)) >
+      drawerRef.current.scrollHeight
+    ) {
+      openDrawerToPeeking(0.1);
+    }
 
     getMaximumUpperScroll();
     getMaximumBottomScroll();
@@ -92,18 +92,18 @@ export const MobileDrawer = ({
   /**
    * Opens the drawer to its "peeking height"
    */
-  const openDrawerToPeeking = () => {
+  const openDrawerToPeeking = (epislon = 0) => {
     setInternalOpen(true);
+
     setDrawerAnimate({
-      y: -peakHeightPx.current,
+      y: -peakHeightPx.current + epislon,
+      // you might be wondering, why the fk are we adding an epislon here?
+      // this is because even though the y value might be currently different, Motion does not seem to actually "animate" the component back to its peakHeight
     });
   };
 
   const shouldWeCloseDrawer = (e, info) => {
-    const style = window.getComputedStyle(drawerRef.current);
-    const transformValue = style.getPropertyValue("transform");
-    const yValue =
-      transformValue === "none" ? 0 : parseInt(transformValue.split(",")[5]);
+    const yValue = getYTranslate(drawerRef.current);
 
     if (yValue < -peakHeightPx.current + closeThresholdPx.current) return;
 
@@ -133,12 +133,17 @@ export const MobileDrawer = ({
         <motion.div
           ref={drawerRef}
           className={`DrawerClass ${className}`}
+          initial={{ y: 0 }}
           animate={drawerAnimate}
           onAnimationComplete={(latest) => {
             checkIfCloseForReal();
           }}
           onDragEnd={(e, info) => {
             shouldWeCloseDrawer(e, info);
+            const { bottom } = drawerRef.current.getBoundingClientRect();
+
+            console.log("yValue: ", getYTranslate(drawerRef.current));
+            console.log("scrollHeight: ", drawerRef.current.scrollHeight);
           }}
           drag="y"
           dragElastic={dragElastic}

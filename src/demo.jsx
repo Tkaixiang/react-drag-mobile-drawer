@@ -101,8 +101,9 @@ class Demo extends PureComponent {
           Similar to drawers on apps such as Google Maps.
           <br />
           <br />
-          Will animate back to its "Peeking Height" if any of the props change,
-          or if the height of the drawer changes
+          Will animate back to its "Peeking Height" if the "bottom" of the
+          drawer is "left hanging in mid-air" due to async content changes,
+          which the example demonstrates
         </Info>
         <button
           onClick={this.toggle("mobileStyle", true)}
