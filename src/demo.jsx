@@ -17,6 +17,8 @@ class Demo extends PureComponent {
 
   toggle = (type, value) => (event) => {
     if (type === "mobileStyle") {
+      this.setState({ test: 100, changeText: "I am a mobile drawer!" });
+
       setTimeout(() => {
         this.setState({ test: 10 });
       }, 5000);
