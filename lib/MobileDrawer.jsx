@@ -22,6 +22,7 @@ export const MobileDrawer = ({
   parentElement = document.body,
   peakHeight = "200px",
 }) => {
+  const drawerObserver = useRef(null);
   const drawerRef = useRef(null);
   const shouldClose = useRef(false);
   const peakHeightPx = useRef(0);
@@ -33,18 +34,33 @@ export const MobileDrawer = ({
   const [maximumScrollBottom, setMaximumScrollBottom] = useState(0);
 
   useLayoutEffect(() => {
-    if (open) setShouldRender(true);
-
     if (!drawerRef.current) return;
-    // this will pass once internalOpen=true and the drawer has rendered
 
-    performCaluclations(); // perform calculations again on any parentElement, peakHeight, closeThreshold changes
-    if (open && !internalOpen) {
-      openDrawerToPeeking();
-    } else if (!open && internalOpen) {
-      closeDrawer();
-    }
-  }, [open, shouldRender, children, parentElement, peakHeight, closeThreshold]);
+    drawerObserver.current = new ResizeObserver((entries) => {
+      // console.log("resize observed!");
+      // console.log("drawerRef.current", drawerRef.current);
+      // console.log("internalOpen", internalOpen);
+      // console.log("shouldClose", shouldClose.current);
+      if (!drawerRef.current || shouldClose.current) return; // sometimes, the drawer might have exited but resizeObserver still calls
+      performCalculations();
+    });
+
+    drawerObserver.current.observe(drawerRef.current);
+
+    () => {
+      drawerObserver.current.disconnect();
+    };
+  }, [shouldRender]);
+
+  useLayoutEffect(() => {
+    if (open) setShouldRender(true);
+    else if (!open && internalOpen) closeDrawer();
+  }, [open]);
+
+  useLayoutEffect(() => {
+    if (!drawerRef.current || !shouldRender) return;
+    performCalculations();
+  }, [shouldRender, parentElement, peakHeight, closeThreshold]);
 
   /**
    * Calculates the peakHeight, maximum upper scroll and closeThreshold in pixels
@@ -53,20 +69,29 @@ export const MobileDrawer = ({
    * If the calculations differ/height differs, it will also move the drawer back to its "peak position"
    * This is to handle async/new content changes
    */
-  const performCaluclations = () => {
-    peakHeightPx.current = convertToPixels(peakHeight, parentElement);
-    closeThresholdPx.current = convertToPixels(closeThreshold, parentElement);
+  const performCalculations = () => {
+    const drawerHeight = drawerRef.current.scrollHeight;
+    const peakHeightTemp = convertToPixels(peakHeight, parentElement);
 
-    // Check if we need to adjust back to "peeking" height because of SHORTER content
-    if (
-      Math.abs(getYTranslate(drawerRef.current)) >
-      drawerRef.current.scrollHeight
-    ) {
-      openDrawerToPeeking(0.1);
-    }
+    peakHeightPx.current =
+      drawerHeight < peakHeightTemp ? drawerHeight : peakHeightTemp;
+    closeThresholdPx.current = convertToPixels(closeThreshold, parentElement);
 
     getMaximumUpperScroll();
     getMaximumBottomScroll();
+
+    // Check if we need to adjust back to "peeking" height because of SHORTER content
+    // or if the content is now taller than the "peeking" height
+    // console.log(Math.abs(getYTranslate(drawerRef.current)) > drawerHeight);
+    // console.log(
+    //   Math.abs(getYTranslate(drawerRef.current)) < peakHeightPx.current,
+    // );
+    if (
+      Math.abs(getYTranslate(drawerRef.current)) > drawerHeight ||
+      Math.abs(getYTranslate(drawerRef.current)) < peakHeightPx.current
+    ) {
+      openDrawerToPeeking(Math.random() * 1.1 + 1);
+    }
   };
 
   /**
@@ -74,6 +99,7 @@ export const MobileDrawer = ({
    * (Height of the drawer - peakHeight), effectively hiding the drawer that is !peakHeight
    */
   const getMaximumUpperScroll = () => {
+    // console.log("new maximum scrollheight:", drawerRef.current.scrollHeight);
     const upperScroll = -drawerRef.current.scrollHeight;
     setMaximumScroll(upperScroll);
     return upperScroll;
@@ -92,11 +118,12 @@ export const MobileDrawer = ({
   /**
    * Opens the drawer to its "peeking height"
    */
-  const openDrawerToPeeking = (epislon = 0) => {
+  const openDrawerToPeeking = (epsilon = 0) => {
     setInternalOpen(true);
 
+    // console.log("peeking", -peakHeightPx.current + epsilon);
     setDrawerAnimate({
-      y: -peakHeightPx.current + epislon,
+      y: -peakHeightPx.current + epsilon,
       // you might be wondering, why the fk are we adding an epislon here?
       // this is because even though the y value might be currently different, Motion does not seem to actually "animate" the component back to its peakHeight
     });
@@ -111,6 +138,7 @@ export const MobileDrawer = ({
   };
 
   const closeDrawer = () => {
+    // console.log("closing");
     setInternalOpen(false);
     setDrawerAnimate({ y: 0 });
     shouldClose.current = true; // we will only close when the animation is complete
@@ -123,6 +151,8 @@ export const MobileDrawer = ({
     // We will only call the close function and unrender only once the drawer close animation has completed
     if (!shouldClose.current) return;
     shouldClose.current = false;
+    drawerObserver.current.disconnect();
+    // console.log("close for real!");
     if (onRequestClose) onRequestClose();
     setShouldRender(false);
   };
@@ -140,6 +170,10 @@ export const MobileDrawer = ({
           }}
           onDragEnd={(e, info) => {
             shouldWeCloseDrawer(e, info);
+            // console.log("maxScrollBottom", maximumScrollBottom);
+            // console.log("maxScroll", maximumScroll);
+            // console.log("drawerHeight", drawerRef.current.scrollHeight);
+            // console.log("y", getYTranslate(drawerRef.current));
           }}
           drag="y"
           dragElastic={dragElastic}
