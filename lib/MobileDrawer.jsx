@@ -1,7 +1,8 @@
 import { motion } from "motion/react";
 import { createPortal } from "react-dom";
 import { convertToPixels } from "./utils/utils";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState, useCallback } from "react";
+import debounce from "lodash.debounce";
 import "./MobileDrawer.css";
 import { getYTranslate } from "./mobileDrawerHelpers";
 
@@ -42,7 +43,7 @@ export const MobileDrawer = ({
       // console.log("internalOpen", internalOpen);
       // console.log("shouldClose", shouldClose.current);
       if (!drawerRef.current || shouldClose.current) return; // sometimes, the drawer might have exited but resizeObserver still calls
-      performCalculations();
+      debouncedCalculations();
     });
 
     drawerObserver.current.observe(drawerRef.current);
@@ -59,9 +60,15 @@ export const MobileDrawer = ({
 
   useLayoutEffect(() => {
     if (!drawerRef.current || !shouldRender) return;
-    performCalculations();
+    debouncedCalculations();
   }, [shouldRender, parentElement, peakHeight, closeThreshold]);
 
+  const debouncedCalculations = useCallback(
+    debounce(() => {
+      performCalculations();
+    }, 50),
+    [],
+  );
   /**
    * Calculates the peakHeight, maximum upper scroll and closeThreshold in pixels
    * Triggers the opening process via openDrawerToPeeking()
